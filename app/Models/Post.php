@@ -74,7 +74,7 @@ class Post extends Model
     public function scopeVip($query, $vip)
     {
         return $query->has('pictures')->when($vip, function($query){
-            $query->where('is_vip', 1);
+            $query->whereIn('is_vip', [1, 0]);
         }, function($query){
             $query->where('is_vip', 0);
         });
