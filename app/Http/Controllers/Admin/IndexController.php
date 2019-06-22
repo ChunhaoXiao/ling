@@ -13,8 +13,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-    	Redis::set('name', 'xiao');
-    	dump(Redis::get('name'));
+    	//echo Cache::get('vip_date_checked');
     	return view('admin.index.index');
     }
 }

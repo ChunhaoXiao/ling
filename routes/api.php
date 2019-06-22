@@ -23,7 +23,7 @@ Route::middleware('auth:api')->get('index', function(){
 });
 
 Route::middleware('auth:api')->group(function(){
-	Route::get('/categories', 'CategoryController@index');
+	Route::get('/categories', 'CategoryController@index')->middleware('validate.vip');
 	Route::get('/swipers', 'SwiperController@index');
 	Route::get('/recommend', 'RecommendController@index');
 	Route::get('/user', 'UserController@index');

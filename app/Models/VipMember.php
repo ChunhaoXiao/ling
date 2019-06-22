@@ -29,4 +29,9 @@ class VipMember extends Model
     		$model->start_at = now();
     	});
     }
+
+    public function scopeExpire($query)
+    {
+        return $query->whereDate('end_at', '<', now())->where('expired', 0);
+    }
 }
