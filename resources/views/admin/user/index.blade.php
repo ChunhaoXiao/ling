@@ -21,6 +21,7 @@
 			@endforeach
 		</thead>
 	</table>
+	<p>{{ $datas->links() }}</p>
 
 
 <!--模态框-->

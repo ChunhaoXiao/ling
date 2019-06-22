@@ -19,6 +19,19 @@
 		      <a class="nav-item nav-link" href="#">Features</a>
 		      <a class="nav-item nav-link" href="#">Pricing</a>
 		      <a class="nav-item nav-link disabled" href="#">Disabled</a>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  admin
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">修改密码</a>
+                  <!-- <a class="dropdown-item" href="#">Another action</a> -->
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="javascript:;" id="logout">退出</a>
+                </div>
+            </li>
+
 		    </div>
 		</div>
     </nav>
@@ -56,6 +69,17 @@
     				}
     			})
     		})
+
+            $("#logout").on('click', function(){
+                const url = "{{route('admin.logout')}}";
+                $.ajax({
+                    url:url,
+                    type:'post',
+                    success:function(){
+                        location.href="{{route('admin.showlogin')}}"
+                    }
+                })
+            });
     	})
     </script>
 </body>
