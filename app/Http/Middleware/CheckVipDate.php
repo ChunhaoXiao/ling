@@ -19,7 +19,7 @@ class CheckVipDate
         if(empty(Cache::get('vip_date_checked')))
         {
             UpdateExpiredVipMembers::dispatch();
-            Cache::set('vip_date_checked', '1', 30);
+            Cache::set('vip_date_checked', '1', 3600);
         }
 
         return $next($request);

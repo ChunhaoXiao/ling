@@ -31,6 +31,5 @@ class UpdateExpiredVipMembers implements ShouldQueue
     public function handle()
     {
         VipMember::expire()->update(['expired' => 1]);
-        info('queue testsqqqqqq');
     }
 }
