@@ -15,7 +15,7 @@ class PostComment extends Model
 
     public function post()
     {
-    	return $this->belongsTo(Post::class, 'post_id');
+    	return $this->belongsTo(Post::class, 'post_id')->withDefault();
     }
 
     public function user()

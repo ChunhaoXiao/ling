@@ -42,6 +42,7 @@
 				  <a href="{{route('categories.index')}}" class="list-group-item">分类管理</a>
 				  <a href="{{route('posts.index')}}" class="list-group-item">主题管理</a>
                   <a href="{{route('users.index')}}" class="list-group-item">用户管理</a>
+                  <a href="{{route('comments.index')}}" class="list-group-item">评论管理</a>
 				  
 				</ul>
     		</div>

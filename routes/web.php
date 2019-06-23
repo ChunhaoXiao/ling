@@ -23,6 +23,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth:admin')->group(func
 	Route::resource('users', 'UserController');
 	Route::post('/uservip', 'UserVipController@store')->name('vip.store');
 	Route::post('/logout', 'AuthController@logout')->name('admin.logout');
+	Route::resource('/comments', 'CommentController')->only('index', 'destroy');
 });
 
 //管理员登录
