@@ -24,6 +24,9 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth:admin')->group(func
 	Route::post('/uservip', 'UserVipController@store')->name('vip.store');
 	Route::post('/logout', 'AuthController@logout')->name('admin.logout');
 	Route::resource('/comments', 'CommentController')->only('index', 'destroy');
+
+	//测试
+	Route::get('test', 'IndexController@test');
 });
 
 //管理员登录
@@ -35,3 +38,5 @@ Route::post('/admin/login', 'Admin\AuthController@login')->name('admin.login');
 //Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+

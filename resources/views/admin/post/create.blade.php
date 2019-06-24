@@ -15,6 +15,15 @@
 			<label for="">标题</label>
 			<input type="text" name="title" class="form-control" value="{{$post->title??''}}">
 		</div>
+
+		<div class="form-group col-md-6">
+			<label for="">贴子类型</label>
+			<select class="form-control" name="post_type">
+				@foreach(App\Models\Post::$types as $key => $v)
+					<option value="{{$key}}">{{$v}}</option>
+				@endforeach
+			</select>
+		</div>
 		<div class="form-group col-md-6">
 			<label for="">价格</label>
 			<input type="text" name="price" class="form-control" value="{{$post->price??0}}">

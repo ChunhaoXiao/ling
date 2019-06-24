@@ -11,20 +11,22 @@ class MyRalatedPostController extends Controller
 {
     public function index(Request $request)
     {
+        $user = Auth::user();
     	if($request->type == 'likes')
     	{
-    		$datas = Auth::user()->likedPost()->with('likeable.cover')->paginate(10);
-    		$datas = $datas->pluck('likeable');
+            $datas = $user->getLikes()->pluck('likeable');
     	}
+
     	elseif($request->type == 'collections')
     	{
-    		$datas = Auth::user()->collections()->with('post.cover')->paginate(10);
-    		$datas = $datas->pluck('post');
+            $datas = $user->getCollections()->pluck('post');
     	}
+
     	elseif ($request->type == 'comments') {
-    		$posts = Auth::user()->comments()->select('post_id')->groupBy('post_id')->paginate(10);
-    		$ids = $posts->pluck('post_id')->toArray();
-    		$datas = Post::whereIn('id', $ids)->with('cover')->get();
+            $datas = $user->getCommented();
+    		// $posts = Auth::user()->comments()->select('post_id')->groupBy('post_id')->paginate(10);
+    		// $ids = $posts->pluck('post_id')->toArray();
+    		// $datas = Post::whereIn('id', $ids)->with('cover')->get();
     	}
     	return PostResource::collection($datas);
     }

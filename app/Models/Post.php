@@ -14,6 +14,12 @@ class Post extends Model
     	'is_vip',
     	'category_id',
     	'time_reange_id',
+        'post_type',
+    ];
+
+    public static $types = [
+        'picture' => '图片', 
+        'video' => '视频',
     ];
 
     public function category()
@@ -44,6 +50,11 @@ class Post extends Model
     public function likes()
     {
         return $this->morphMany(Like::class, 'likeable');
+    }
+
+    public function getVideoUrlAttribute()
+    {
+        return asset('storage/'.$this->pictures->first()->path);
     }
 
     public function updatePictures($datas)
@@ -82,7 +93,7 @@ class Post extends Model
 
     public function scopeRecommend($query)
     {
-        return $query->latest()->with('cover')->limit(6);
+        return $query->where('post_type', 'picture')->latest()->with('cover')->limit(6);
     }
 
     public function getPictureFullPathAttribute()

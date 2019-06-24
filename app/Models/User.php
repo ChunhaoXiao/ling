@@ -55,6 +55,7 @@ class User extends Authenticatable
     public function likedPost()
     {
         return $this->hasMany(Like::class, 'user_id')->where('likeable_type', 'App\Models\Post');
+        //return $this->hasMany(Like::class, 'user_id')->whereLikeableType(Post::class);
     }
 
     public function collections()
@@ -94,6 +95,30 @@ class User extends Authenticatable
         }
         $this->collections()->create(['post_id' => $post_id]);
         return 1;
+    }
+
+
+    public function getLikes()
+    {
+        return $this->likedPost()->whereHas('post', function($query){
+            $query->vip($this->vip()->exists());
+        })->with('likeable.cover')->paginate(10);
+    }
+
+    public function getCollections()
+    {
+        return $this->collections()->whereHas('post', function($query){
+            $query->vip($this->vip()->exists());
+        })->with('post.cover')->paginate(10);
+    }
+
+    public function getCommented()
+    {
+        $posts = $this->comments()->whereHas('post', function($query){
+            $query->vip($this->vip()->exists());
+        })->select('post_id')->groupBy('post_id')->paginate(10);
+        $ids = $posts->pluck('post_id')->toArray();
+        return Post::whereIn('id', $ids)->with('cover')->get();
     }
 
     // public function scopeLikedPost($query)

@@ -22,6 +22,8 @@ class PostResource extends JsonResource
             'cover' => $this->picture_full_path,
             'price' => $this->price,
             'comment_count' => $this->comment_count,
+            'post_type' => $this->post_type,
+            'comments' => $this->comments,
             $this->mergeWhen(!empty($request->post), [
                 'body' => $this->body,
                 'pictures' => $this->postPics,
@@ -30,6 +32,10 @@ class PostResource extends JsonResource
                 'collection_count' => $this->collections_count,
                 'my_collection' => $this->my_collection,
             ]),
+            'video' =>  $this->when($this->post_type == 'video', $this->video_url),
+            'cates' => 'aaaaaa'
         ];
     }
+
+   
 }

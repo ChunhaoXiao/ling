@@ -28,7 +28,7 @@ class PostRequest extends FormRequest
             'price' => 'numeric|min:0',
             'sold_count' => 'numeric|min:0',
             'category_id' => 'numeric|exists:categories,id',
-            'pictures.*' => 'mimes:png,jpg,jpeg',
+            'pictures.*' => 'mimes:png,jpg,jpeg,mp4',
         ];
     }
 }

@@ -17,4 +17,14 @@ class Like extends Model
     {
     	return $this->morphTo();
     }
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class, 'likeable_id')->whereLikeableType(Post::class);
+    }
+
+    public function comment()
+    {
+
+    }
 }
