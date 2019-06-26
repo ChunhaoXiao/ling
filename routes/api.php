@@ -35,4 +35,9 @@ Route::middleware('auth:api')->group(function(){
 	Route::post('likes', 'PostLikeController@store');
 	Route::post('/collections', 'CollectionController@store');
 	Route::get('/myrelatedposts', 'MyRalatedPostController@index');
+
+
+
 });
+
+Route::post('/buy', 'BuyController@store')->middleware('key.check');
