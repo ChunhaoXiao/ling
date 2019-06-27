@@ -15,7 +15,7 @@ class PostCommentController extends Controller
 
     public function store(CommentRequest $request, Post $post)
     {
-    	$dataObj = $post->comments()->make($request->only('body'));
+    	$dataObj = $post->comments()->make($request->only('body', 'comment_id'));
     	$request->user()->comments()->save($dataObj);
     	$dataObj->refresh()->user;
     	return $dataObj;
