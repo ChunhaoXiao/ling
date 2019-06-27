@@ -24,7 +24,7 @@ class PostController extends Controller
     {
 
     	$post = Post::with(['pictures', 'comments' => function($query){
-            $query->limit(5);
+            $query->with('user')->limit(5);
         }])->withCount(['likes as total_likes', 'likes as mylike' => function($query){
     		$query->where('user_id', Auth::id());
     	}, 'collections as collections_count', 'collections as my_collection', 'comments as comment_count'])->findOrFail($id);
