@@ -17,9 +17,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::withCount(['likes as like_count', 'collections as collection_count'])->with('vip')->find(Auth::id());
-        // $user = Auth::user();
-        // $user->vip;
+        $user = User::withCount(['likes as like_count', 'collections as collection_count','comments as newreplies' => function($query){
+            $query->whereHas('replied', function($query){
+                $query->where('viewed', 0);
+            });
+        }])->with('vip')->find(Auth::id());
+        
         return new UserResource($user);
     }
 

@@ -23,7 +23,7 @@ class PostResource extends JsonResource
             'price' => $this->price,
             'comment_count' => $this->comment_count,
             'post_type' => $this->post_type,
-            'comments' => $this->comments,
+            //'comments' => CommentResource::collection($this->comments),
             $this->mergeWhen(!empty($request->post), [
                 'body' => $this->body,
                 'pictures' => $this->postPics,

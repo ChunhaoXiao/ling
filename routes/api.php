@@ -32,10 +32,11 @@ Route::middleware('auth:api')->group(function(){
 	Route::resource('posts', 'PostController')->only('index', 'show');
 	Route::post('/{post}/comments', 'PostCommentController@store');
 	Route::get('/{post}/comments', 'PostCommentController@index');
+	Route::delete('comments/{id}', 'PostCommentController@destroy');
 	Route::post('likes', 'PostLikeController@store');
 	Route::post('/collections', 'CollectionController@store');
 	Route::get('/myrelatedposts', 'MyRalatedPostController@index');
-
+	Route::get('/replies', 'ReplyController@index');
 
 
 });

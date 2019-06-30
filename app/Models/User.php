@@ -63,6 +63,8 @@ class User extends Authenticatable
         return $this->hasMany(Collection::class, 'user_id');
     }
 
+    
+
     public function updateVip($months)
     {
         if($this->vip()->doesntExist())

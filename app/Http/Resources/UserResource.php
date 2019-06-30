@@ -20,6 +20,7 @@ class UserResource extends JsonResource
             'collection_count' => $this->collection_count,
             'name' => $this->name,
             'vm' => $this->vip? 'VIP会员到期时间:'.$this->vip->end_at->toDateString():'',
+            'new_replies' => $this->newreplies,
         ];
     }
 }

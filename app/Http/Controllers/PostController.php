@@ -23,9 +23,7 @@ class PostController extends Controller
     public function show($id)
     {
 
-    	$post = Post::with(['pictures', 'comments' => function($query){
-            $query->with('user')->limit(5);
-        }])->withCount(['likes as total_likes', 'likes as mylike' => function($query){
+    	$post = Post::with('pictures')->withCount(['likes as total_likes', 'likes as mylike' => function($query){
     		$query->where('user_id', Auth::id());
     	}, 'collections as collections_count', 'collections as my_collection', 'comments as comment_count'])->findOrFail($id);
     	$this->authorize('view', $post);
